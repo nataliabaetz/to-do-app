@@ -1,0 +1,37 @@
+body {
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+h1 {
+  color: hsla(208, 3%, 26%, 0.9); 
+  font-weight: bold;
+  margin: 0 0 20px;
+  padding: 0;
+}
+
+span {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+li {
+  display: flex;
+  flex-direction: row;
+  width: 350px;
+}
+
+li > input {
+  flex: 0;
+}
+li > span {
+  flex: 1;
+}
+
+button.mdl-button {
+  height: 18px;
+  line-height: 18px;
+}
