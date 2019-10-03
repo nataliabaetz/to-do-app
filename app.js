@@ -2,6 +2,15 @@
 function onReady() {
   let id = 0;
   let toDos = [];
+
+  const savedItems = localStorage.getItem('toDos')
+  if( savedItems != null){
+    toDos = JSON.parse(savedItems)
+  }
+
+  function save() {
+    localStorage.setItem('toDos', JSON.stringify(toDos))
+  }
   function renderTheUI() {
     const toDoList = document.getElementById('toDoList');
 
@@ -13,6 +22,7 @@ function onReady() {
       const button = document.createElement('button');
       
       checkbox.type = "checkbox";
+      checkbox.checked = toDo.complete
 
       newLi.textContent = toDo.title;
 
@@ -25,7 +35,15 @@ function onReady() {
       button.addEventListener('click', event => {
         toDos = toDos.filter(toDoItem =>  toDoItem.id != toDo.id );
         renderTheUI()
+        save()
       })
+
+      checkbox.addEventListener('change', event => {
+        toDo.complete = event.target.checked
+        renderTheUI()
+        save()
+      })
+
     });
 
   }
@@ -41,6 +59,7 @@ function onReady() {
     newToDoText.value = '';
     id = id + 1
     renderTheUI();
+    save()
   }
 
   const addToDoForm = document.getElementById('addToDoForm');
